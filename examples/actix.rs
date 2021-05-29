@@ -3,8 +3,6 @@ use actix_web::{get, http::StatusCode, web, App, Error, HttpResponse, HttpServer
 use futures::{future::ok, stream::once};
 use std::fs::read_to_string;
 
-use ssr_rs::Ssr;
-
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
@@ -23,7 +21,7 @@ async fn main() -> std::io::Result<()> {
 async fn index() -> HttpResponse {
     let source = read_to_string("./client/dist/ssr/index.js").unwrap();
 
-    let body = once(ok::<_, Error>(web::Bytes::from(Ssr::render_to_string(
+    let body = once(ok::<_, Error>(web::Bytes::from(ssr_rs::render_to_string(
         &source, "SSR", None,
     ))));
 

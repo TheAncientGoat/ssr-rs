@@ -1,4 +1,5 @@
-#![doc(html_logo_url = "https://raw.githubusercontent.com/Valerioageno/ssr-rs/main/logo.png")]
+#![deny(missing_docs)]
+#![doc(html_logo_url = "https://raw.githubusercontent.com/Valerioageno/ssr-rs/main/logo.png", html_favicon_url = "https://raw.githubusercontent.com/Valerioageno/ssr-rs/main/logo.png")]
 
 //!
 //! The project aims to enable server side rendering on rust servers in the simplest and lightest way possible.
@@ -18,13 +19,12 @@
 //! The whole logic is stored inside the <a href="./struct.Ssr.html#method.render_to_string">render_to_string()</a> function.
 //!
 //! ```no_run
-//! use ssr_rs::Ssr;
 //! use std::fs::read_to_string;
 //!
 //! fn main() {
 //!     let source = read_to_string("./path/to/build.js").unwrap();
 //!
-//!     let html = Ssr::render_to_string(&source, "entryPoint", None);
+//!     let html = ssr_rs::render_to_string(&source, "entryPoint", None);
 //!    
 //!     assert_eq!(html, "<!doctype html><html>...</html>".to_string());
 //! }
@@ -34,7 +34,6 @@
 //!  # Example with initial props
 //!
 //! ```no_run
-//! use ssr_rs::Ssr;
 //! use std::fs::read_to_string;
 //!
 //! fn main() {
@@ -49,7 +48,7 @@
 //!
 //!     let source = read_to_string("./path/to/build.js").unwrap();
 //!
-//!     let html = Ssr::render_to_string(&source, "entryPoint", Some(&props));
+//!     let html = ssr_rs::render_to_string(&source, "entryPoint", Some(&props));
 //!    
 //!     assert_eq!(html, "<!doctype html><html>...</html>".to_string());
 //! }
@@ -58,4 +57,4 @@
 extern crate lazy_static;
 mod ssr;
 
-pub use ssr::Ssr;
+pub use ssr::render_to_string;

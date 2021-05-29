@@ -24,14 +24,13 @@ ssr_rs = "0.2.3"
 The all logic is stored inside the `render_to_string()` function.
 
 ```rust
-use ssr_rs::Ssr;
 use std::fs::read_to_string;
 
 fn main() {
 
     let source = read_to_string("./path/to/build.js").unwrap();
 
-    let html = Ssr::render_to_string(&source, "entryPoint", None);
+    let html = ssr_rs::render_to_string(&source, "entryPoint", None);
     
     assert_eq!(html, "<!doctype html><html>...</html>".to_string());
 }
@@ -42,7 +41,6 @@ There are included examples with the most famous server frameworks and a default
 ## Example with initial props
 
 ```rust
-use ssr_rs::Ssr;
 use std::fs::read_to_string;
 
 fn main() {
@@ -57,7 +55,7 @@ fn main() {
 
     let source = read_to_string("./path/to/build.js").unwrap();
 
-    let html = Ssr::render_to_string(&source, "entryPoint", Some(&props));
+    let html = ssr_rs::render_to_string(&source, "entryPoint", Some(&props));
     
     assert_eq!(html, "<!doctype html><html>...</html>".to_string());
 }

@@ -4,8 +4,6 @@ use std::fs::read_to_string;
 
 use actix_files as fs;
 
-use ssr_rs::Ssr;
-
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
@@ -32,7 +30,7 @@ async fn index() -> HttpResponse {
         ]
     }"##;
 
-    let body = once(ok::<_, Error>(web::Bytes::from(Ssr::render_to_string(
+    let body = once(ok::<_, Error>(web::Bytes::from(ssr_rs::render_to_string(
         &source,
         "SSR",
         Some(&mock_props),
